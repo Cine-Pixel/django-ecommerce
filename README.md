@@ -9,8 +9,9 @@ NOTE: project is setup for python 3.9 so It should work fine for 3.9+ versions. 
 # clone the repo
 git clone https://github.com/Cine-Pixel/django-ecommerce.git
 
-# create virtual environment with venv or your preffered tool
+# create virtual environment with venv or your preffered tool and activate
 python -m venv venv
+source venv/bin/activate # for linux and mac
 
 # install requirements
 pip install .
