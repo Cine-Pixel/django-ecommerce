@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Products{% endblock title %}
+
+{% block content %}
+    <div>
+        {% for product in products %}
+            <div>
+                <h1><a href="{% url 'view-product' pk=product.id %}">{{ product.name }}</a></h1>
+                <p>{{ product.description }}</p>
+                <p>{{ product.category }}</p>
+                <h4>{{ product.price }} | {{ product.quantity }}</h4>
+                <img src="{{ product.image_set.all.0.image.url }}" alt="product image" style="width: 200px; height: 200px;">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
