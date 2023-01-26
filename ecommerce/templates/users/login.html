@@ -1,0 +1,20 @@
+<form action="{% url 'login' %}" method="post">
+    {% include 'components/_alerts.html' %}
+
+    {% csrf_token %}
+    <label for="email">
+        <span>Email</span>
+        <input type="email" name="email" id="email">
+    </label>
+    <br>
+    <label for="password">
+        <span>Password</span>
+        <input type="password" name="password" id="password">
+    </label>
+    <br>
+    <p>
+        Don't have an account? <a href="{% url 'register' %}">Register</a>
+    </p>
+
+    <input type="submit" value="Login">
+</form>
