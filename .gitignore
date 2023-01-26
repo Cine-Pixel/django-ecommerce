@@ -236,3 +236,5 @@ fabric.properties
 
 # VsCode
 .vscode/
+ecommerce/media/product_images/*
+!ecommerce/media/product_images/default.png
