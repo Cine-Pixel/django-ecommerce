@@ -1,5 +1,6 @@
 <nav>
     <a href="{% url 'list-products' %}">Products</a>
+    <a href="{% url 'orders:list-orders' %}">Orders</a>
     <a href="{% url 'cart:view-cart' %}">Cart</a> <span id="cart-item-number">0</span>
     {% if not user.is_authenticated %}
         <a href="{% url 'login' %}">Login</a>
