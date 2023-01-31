@@ -11,6 +11,8 @@
                 <p>{{ product.category }}</p>
                 <h4>{{ product.price }} | {{ product.quantity }}</h4>
                 <img src="{{ product.image_set.all.0.image.url }}" alt="product image" style="width: 200px; height: 200px;">
+                <br>
+                <button class="btn-cart" data-product-id={{ product.id }}>Add to cart</button>
             </div>
         {% endfor %}
     </div>
