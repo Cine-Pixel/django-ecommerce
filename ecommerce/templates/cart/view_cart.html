@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Cart{% endblock title %}
+
+{% block content %}
+<table>
+    <tr>
+        <td>Product Name</td>
+        <td>Price</td>
+        <td>Quantity</td>
+        <td>Actions</td>
+    </tr>
+    {% for item in cart_items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>
+                <button data-item-id={{ item.id }} class="btn-cart-item-increment">+</button>
+                <button data-item-id={{ item.id }} class="btn-cart-item-delete">Delete</button>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+    {% if cart_items %}
+        <button data-cart-id={{ cart_id }}>Order</button>
+    {% else %}
+        <h3>No items in cart</h3>
+    {% endif %}
+{% endblock content %}
