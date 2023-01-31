@@ -16,7 +16,7 @@ class Product(models.Model):
     description = models.TextField(max_length=700)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products")
 
     def __str__(self):
         return self.name
