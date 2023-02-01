@@ -3,6 +3,7 @@ from django.db import models
 
 class Cart(models.Model):
     user = models.ForeignKey("users.CommerceUser", on_delete=models.CASCADE)
+    items: models.QuerySet["CartItem"]
 
     def __str__(self) -> str:
         return f"{self.user.email}'s cart"
