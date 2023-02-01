@@ -21,6 +21,14 @@ class LoginView(View):
             return redirect("products:list-products")
         messages.error(request, "Invalid credentials")
         return redirect("users:login")
+    
+    
+class LogoutView(View):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        auth.logout(request)
+        messages.success(request, "You are now logged out")
+        
+        return redirect("users:login")
 
 
 class RegisterView(View):

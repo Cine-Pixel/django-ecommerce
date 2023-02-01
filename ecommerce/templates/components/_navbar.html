@@ -30,7 +30,7 @@
         {% if not user.is_authenticated %}
             <a href="{% url 'users:login' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Login</a>
         {% else %}
-            <a href="#" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Logout</a>
+            <a href="{% url 'users:logout' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Logout</a>
         {% endif %}
       </div>
     </div>
