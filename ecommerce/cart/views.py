@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 from django.db.models import Sum
+from django.contrib.auth.decorators import login_required
 from products.models import Product
 from rest_framework import status
 from rest_framework.request import Request
@@ -59,6 +60,7 @@ class CartApiView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@login_required(login_url="/auth/login")
 def view_cart(request: HttpRequest) -> HttpResponse:
     cart, _ = Cart.objects.get_or_create(user = request.user)
     items = cart.items.all()
