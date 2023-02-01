@@ -15,6 +15,7 @@ const getCookie = (name) => {
 
 
 const addToCart = (event) => {
+    event.preventDefault();
     const product_id = event.target.dataset.productId;
     const url = "/cart/api/";
 
@@ -45,7 +46,7 @@ const deleteCartItem = (event) => {
         },
         headers:{"X-CSRFToken": getCookie("csrftoken")},
         success: function(response) {
-            const element = event.target.parentElement.parentElement;
+            const element = event.target.parentElement.parentElement.parentElement.parentElement;
             element.parentElement.removeChild(element);
         },
     });
@@ -54,7 +55,7 @@ const deleteCartItem = (event) => {
 
 const incrementCartItem = (event) => {
     const item_id = event.target.dataset.itemId;
-
+    console.log(event.target)
     $.ajax({
         type: "PUT",
         url: "/cart/api/",

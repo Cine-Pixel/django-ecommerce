@@ -8,6 +8,7 @@ urlpatterns = [
     path("auth/", include("users.urls")),
     path("products/", include("products.urls")),
     path("cart/", include("cart.urls")),
+    path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 if settings.DEBUG:
