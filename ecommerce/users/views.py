@@ -18,9 +18,17 @@ class LoginView(View):
         if user is not None:
             auth.login(request, user)
             messages.success(request, "You are now logged in")
-            return redirect("login")
+            return redirect("products:list-products")
         messages.error(request, "Invalid credentials")
-        return redirect("login")
+        return redirect("users:login")
+    
+    
+class LogoutView(View):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        auth.logout(request)
+        messages.success(request, "You are now logged out")
+        
+        return redirect("users:login")
 
 
 class RegisterView(View):
@@ -35,7 +43,7 @@ class RegisterView(View):
         form = CommerceUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            return redirect("users:login")
         context = {
             "form": form
         }
