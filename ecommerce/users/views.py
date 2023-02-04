@@ -2,7 +2,7 @@ from django.contrib import auth, messages
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views import View
-from .forms import CommerceUserCreationForm
+from .forms import CommerceUserCreationForm, CommerceUserChangeForm
 
 
 class LoginView(View):
@@ -48,3 +48,30 @@ class RegisterView(View):
             "form": form
         }
         return render(request, "users/register.html", context=context)
+
+class EditProfile(View):
+    def get(self, request: HttpRequest) -> HttpResponse:
+        user = request.user
+        
+        context = {
+            "user": user
+        }
+        return render(request, "users/update_profile.html", context=context)
+    
+    def post(self, request: HttpRequest) -> HttpResponse:
+        user = request.user
+        
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        email = request.POST.get("email")
+        
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        
+        user.save()
+        
+        context = {
+            "user": user
+        }
+        return render(request, "users/update_profile.html", context=context)

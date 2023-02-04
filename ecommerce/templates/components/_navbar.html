@@ -33,7 +33,13 @@
         {% if not user.is_authenticated %}
             <a href="{% url 'users:login' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Login</a>
         {% else %}
-            <a href="{% url 'users:logout' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Logout</a>
+          <a href="{% url 'users:edit-profile' %}">
+            <div class="relative w-6 h-6 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 mr-4">
+              <svg class="absolute w-8 h-8 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            </div>
+          </a>
+        
+          <a href="{% url 'users:logout' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Logout</a>
         {% endif %}
       </div>
     </div>
