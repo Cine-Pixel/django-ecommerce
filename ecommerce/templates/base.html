@@ -1,31 +1,33 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		{% tailwind_css %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <title>Ecommerce | {% block title %}{% endblock title %}</title>
-	</head>
 
-	<body class="bg-gray-50 font-serif leading-normal tracking-normal">
-        {% include 'components/_navbar.html' %}
-		<header class="bg-white shadow">
-			<div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	{% tailwind_css %}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title>Ecommerce | {% block title %}{% endblock title %}</title>
+</head>
+
+<body class="bg-gray-50 font-serif leading-normal tracking-normal">
+	{% include 'components/_navbar.html' %}
+	<header class="bg-white shadow">
+		<div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
 			<h1 class="text-3xl font-bold tracking-tight text-gray-900">{% block header %}{% endblock header %}</h1>
-			</div>
-		</header>
-		<main>
-			<div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+		</div>
+	</header>
+	<main>
+		<div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
 			<!-- Replace with your content -->
-				{% block content %}
-				{% endblock content %}
+			{% block content %}
+			{% endblock content %}
 			<!-- /End replace -->
-			</div>
-		</main>
+		</div>
+	</main>
 
-        <script src="{% static 'js/app.js' %}"></script>
-	</body>
+	<script src="{% static 'js/app.js' %}"></script>
+</body>
+
 </html>

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %} Main Page {% endblock title %}
+{% block page %} Main Page {% endblock page %}
+{% block content %}
+
+<div style="display: flex; justify-content: center; align-items: center;margin: 0 auto; width: 70%;">
+    <img src=" https://www.estivasoftech.com/images/our-service-png/e-commerce.svg" alt="">
+</div> <br><br><br><br>
+<!-- Category | Phone -->
+<div class="bg-white">
+    <h1 style="text-align: center; font-size: 2rem;">Category | Phone</h1>
+    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {% for product in category_phone %}
+            <div>
+                <div
+                    class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                    <img src="{{ product.image_set.all.0.image.url }}"
+                        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+                        class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700">{{ product.name }}</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900">${{ product.price }}</p>
+                </a>
+                <button
+                    class="btn-cart pointer-events-auto rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+                    data-product-id={{ product.id }}>Add to cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> <br><br>
+
+
+
+<!-- Category | Laptop -->
+<div class="bg-white">
+    <h1 style="text-align: center; font-size: 2rem;">Category | Laptop</h1>
+    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {% for product in category_laptop %}
+            <div>
+                <div
+                    class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                    <img src="{{ product.image_set.all.0.image.url }}"
+                        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+                        class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700">{{ product.name }}</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900">${{ product.price }}</p>
+                </a>
+                <button
+                    class="btn-cart pointer-events-auto rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+                    data-product-id={{ product.id }}>Add to cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> <br><br>
+
+
+<!-- Last Products Left -->
+<h1 style="text-align: center; font-size: 2rem;">Last Products Left</h1> <br> <br> <br>
+<div class="bg-white">
+    <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <h2 class="sr-only">Recent Products</h2>
+
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+            {% for product in last_products %}
+            <div>
+                <div
+                    class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                    <img src="{{ product.image_set.all.0.image.url }}"
+                        alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+                        class="h-full w-full object-cover object-center group-hover:opacity-75">
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700">{{ product.name }}</h3>
+                <p class="mt-1 text-lg font-medium text-gray-900">${{ product.price }}</p>
+                </a>
+                <button
+                    class="btn-cart pointer-events-auto rounded-md bg-indigo-600 py-2 px-3 text-[0.8125rem] font-semibold leading-5 text-white hover:bg-indigo-500"
+                    data-product-id={{ product.id }}>Add to cart</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> <br><br>
+
+{% endblock content %}

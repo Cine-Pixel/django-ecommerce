@@ -7,7 +7,8 @@ from .models import CommerceUser
 class CommerceUserCreationForm(UserCreationForm):
     class Meta:
         model = CommerceUser
-        fields = ("first_name", "last_name", "email", "password1", "password2", )
+        fields = ("first_name", "last_name", "email",
+                  "password1", "password2", )
 
 
 class CommerceUserChangeForm(UserChangeForm):
