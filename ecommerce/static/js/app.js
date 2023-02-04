@@ -66,7 +66,7 @@ const incrementCartItem = (event) => {
         headers:{"X-CSRFToken": getCookie("csrftoken")},
         success: function(response) {
             const totalPriceTarget = document.getElementById("total-price-span")
-            totalPriceTarget.innerText = response.total_price;
+            totalPriceTarget.innerText = `$${response.total_price}`;
 
             const element = target.parentElement.parentElement;
 
@@ -74,7 +74,7 @@ const incrementCartItem = (event) => {
             quantityTarget.value = response.quantity;
 
             const TotalProductPriceTarget= element.querySelector('.product-total-price');
-            TotalProductPriceTarget.innerText = response.current_product_total_price
+            TotalProductPriceTarget.innerText = `$${response.current_product_total_price}`;
         },
     });
 }
