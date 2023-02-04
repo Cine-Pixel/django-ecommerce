@@ -13,13 +13,13 @@ def place_order(request: HttpRequest) -> HttpResponse:
         cart = Cart.objects.filter(user__id=request.user.id).first()
         if cart is None:
             messages.info("Please add items to the cart to make an order.")
-            return redirect("cart")
+            return redirect("cart:view-cart")
         order_items: list[OrderItem] = []
-        for item in cart.items:
+        for item in cart.items.all():
             product = Product.objects.filter(id=item.product.id).first()
             if product is None or (product.quantity - item.quantity) <= 0:
                 messages.info(f"Not enough {product.name}.")
-                return redirect("cart")
+                return redirect("cart:view-cart")
             order_item = OrderItem(product=product, quantity=item.quantity)
             order_items.append(order_item)
 
@@ -28,9 +28,10 @@ def place_order(request: HttpRequest) -> HttpResponse:
         for item in order_items:
             item.order = order
             item.save()
-        return redirect("list-orders")
+        cart.delete()
+        return redirect("orders:list-orders")
     else:
-        return render(request, "erros/not_allowed.html", status=405)
+        return render(request, "errors/not_allowed.html", status=405)
 
 
 @login_required(login_url="/users/login")
