@@ -68,7 +68,10 @@
             <span>Total cost</span>
             <span>${{ total_price }}</span>
             </div>
-            <button data-cart-id={{ cart_id }} class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+            <form action="{% url 'orders:place-order' %}" method="POST">
+                {% csrf_token %}
+                <button data-cart-id={{ cart_id }} class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+            </form>
         </div>
         </div>
     </div>
