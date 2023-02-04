@@ -54,8 +54,8 @@ const deleteCartItem = (event) => {
 
 
 const incrementCartItem = (event) => {
-    const item_id = event.target.dataset.itemId;
-    console.log(event.target)
+    const target = event.currentTarget;
+    const item_id = target.dataset.itemId;
     $.ajax({
         type: "PUT",
         url: "/cart/api/",
@@ -65,8 +65,16 @@ const incrementCartItem = (event) => {
         },
         headers:{"X-CSRFToken": getCookie("csrftoken")},
         success: function(response) {
-            const element = event.target.parentElement.parentElement;
-            console.log(element)
+            const totalPriceTarget = document.getElementById("total-price-span")
+            totalPriceTarget.innerText = response.total_price;
+
+            const element = target.parentElement.parentElement;
+
+            const quantityTarget = element.querySelector('.quantity-target');
+            quantityTarget.value = response.quantity;
+
+            const TotalProductPriceTarget= element.querySelector('.product-total-price');
+            TotalProductPriceTarget.innerText = response.current_product_total_price
         },
     });
 }
@@ -87,5 +95,8 @@ $.ajax({
     url: "/cart/api/",
     success: function(response) {
         $("#cart-item-number").text(response.length);
+    },
+    error: function(response) {
+        console.log("no auth")
     }
 });
