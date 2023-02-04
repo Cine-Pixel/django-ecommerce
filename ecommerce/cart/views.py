@@ -72,7 +72,10 @@ class CartApiView(APIView):
 def view_cart(request: HttpRequest) -> HttpResponse:
     cart, _ = Cart.objects.get_or_create(user = request.user)
     items = cart.items.all()
-    total_price = items.aggregate(Sum("product__price"))["product__price__sum"] * items.aggregate(Sum("quantity"))["quantity__sum"]
+    if items:
+        total_price = items.aggregate(Sum("product__price"))["product__price__sum"] * items.aggregate(Sum("quantity"))["quantity__sum"]
+    else:
+        total_price = 0
     context = {
         "cart_id": cart.id,
         "cart_items": items,
