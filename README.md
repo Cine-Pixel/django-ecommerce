@@ -34,14 +34,14 @@ Tasks can be found on projects page of the repo. You can tackle any task you wan
 Once you choose what you wanna work on, follow the instructions below:
 
 - **STEP 0**. Make sure you have project setup on your local machine.
-- **STEP 1**. Update you local main branch: 
+- **STEP 1**. Update your local main branch: 
     ```sh
     # make sure you are on the main branch with
     git checkout main
     # update it
     git pull main
     ```
-- **STEP 2**. Create new a branch:
+- **STEP 2**. Create a new branch:
     ```sh
     git checkout -b <your-branch-name>
     ```
