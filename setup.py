@@ -1,6 +1,6 @@
 from setuptools import setup
 
 setup(
-    version="0.1.0",
+    version="0.9.0",
     py_modules=["ecommerce"]
 )
