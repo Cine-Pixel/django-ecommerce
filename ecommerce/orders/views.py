@@ -3,11 +3,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from products.models import Product
-from cart.models import Cart, CartItem
+from cart.models import Cart
 from .models import Order, OrderItem
 
 
-@login_required(login_url="/users/login")
+@login_required(login_url="/auth/login")
 def place_order(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         cart = Cart.objects.filter(user__id=request.user.id).first()
@@ -34,7 +34,7 @@ def place_order(request: HttpRequest) -> HttpResponse:
         return render(request, "errors/not_allowed.html", status=405)
 
 
-@login_required(login_url="/users/login")
+@login_required(login_url="/auth/login")
 def list_orders(request: HttpRequest) -> HttpResponse:
     if request.method != "GET":
         return render(request, "erros/not_allowed.html", status=405)
