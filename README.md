@@ -22,6 +22,10 @@ python manage.py migrate
 
 # run server
 python manage.py runserver
+
+# to run tailwind frontend
+python manage.py tailwind install
+python manage.py tailwind start
 ```
 
 ## Workflow
