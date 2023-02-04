@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.db.models import Sum
 from django.contrib.auth.decorators import login_required
 from products.models import Product
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -13,7 +13,8 @@ from .models import Cart
 
 
 class CartApiView(APIView):
-    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
+
     def get(self, request: Request) -> Response:
         cart = Cart.objects.get(user = request.user)
         items = cart.items.all()
@@ -45,7 +46,14 @@ class CartApiView(APIView):
         if item:
             item.quantity = quantity if quantity is not None else (item.quantity + 1)
             item.save()
-            return Response(data={"message": f"Added one more {item.product.name}"}, status=status.HTTP_200_OK)
+            items = cart.items.all()
+            total_price = items.aggregate(Sum("product__price"))["product__price__sum"] * items.aggregate(Sum("quantity"))["quantity__sum"]
+            return Response(data={
+                "message": f"Added one more {item.product.name}",
+                "current_product_total_price": item.quantity * item.product.price,
+                "total_price": total_price,
+                "quantity": item.quantity
+            }, status=status.HTTP_200_OK)
         else:
             return Response(data={"message": "Item not in cart"}, status=status.HTTP_404_NOT_FOUND)
     
@@ -64,7 +72,7 @@ class CartApiView(APIView):
 def view_cart(request: HttpRequest) -> HttpResponse:
     cart, _ = Cart.objects.get_or_create(user = request.user)
     items = cart.items.all()
-    total_price = items.aggregate(Sum("product__price"))["product__price__sum"]
+    total_price = items.aggregate(Sum("product__price"))["product__price__sum"] * items.aggregate(Sum("quantity"))["quantity__sum"]
     context = {
         "cart_id": cart.id,
         "cart_items": items,

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "products.apps.ProductsConfig",
     "cart.apps.CartConfig",
     "orders.apps.OrdersConfig",
+    "main.apps.MainConfig",
     "tailwind",
     "theme",
     "django_browser_reload",
